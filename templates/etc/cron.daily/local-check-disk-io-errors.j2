@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# It is useless to search for I/O errors on these directories
+EXCLUDE_LIST=("dev" "proc" "run" "sys")
+
+# Reset log file
+>/var/log/abl-check-disk-io-errors.log
+
+# https://www.cyberciti.biz/tips/handling-filenames-with-spaces-in-bash.html
+SAVEIFS=$IFS
+IFS=$(echo -en "\n\b")
+for f in $(ls /)
+do
+  if [[ ! " ${EXCLUDE_LIST[@]} " =~ " ${f} " ]]; then
+    find /$f 2>>/var/log/abl-check-disk-io-errors.log | xargs -IDD ls "DD" 2>&1 | grep "Input/output" | tee -a /var/log/abl-check-disk-io-errors.log
+  fi
+done
+IFS=$SAVEIFS

@@ -1,0 +1,25 @@
+---
+- name: Setup systools cron
+  template:
+    src: "etc/cron.daily/abl-check-disk-io-errors.j2"
+    dest: "/etc/cron.daily/abl-check-disk-io-errors"
+    owner: "root"
+    group: "root"
+    mode: "0755"
+  when: systools_enabled
+
+- name: Increase rsyslog rate limiting
+  copy:
+    dest: /etc/rsyslog.d/imuxsock.conf
+    content: "$SystemLogRateLimitBurst 1000"
+
+- name: restart rsyslog service
+  service:
+    name: rsyslog
+    state: restarted
+
+- name: Install VMWare tools if needed
+  apt:
+    name: open-vm-tools
+    state: present
+  when: ansible_virtualization_type ==  "VMware"
