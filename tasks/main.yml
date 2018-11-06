@@ -1,12 +1,19 @@
 ---
-- name: Setup systools cron
-  template:
-    src: "etc/cron.daily/abl-check-disk-io-errors.j2"
-    dest: "/etc/cron.daily/abl-check-disk-io-errors"
-    owner: "root"
-    group: "root"
-    mode: "0755"
-  when: systools_enabled
+#- name: Setup systools cron
+#  template:
+#    src: "etc/cron.daily/abl-check-disk-io-errors.j2"
+#    dest: "/etc/cron.daily/abl-check-disk-io-errors"
+#    owner: "root"
+#    group: "root"
+#    mode: "0755"
+#  when: systools_enabled
+
+#https://www.inetdoc.net/archives/2016/02/08/r%C3%A9glage_de_lheure_avec_ntp_sur_un_syst%C3%A8me_client_debian_gnulinux/index.html
+#$ sudo sysctl net.ipv4.conf.all.rp_filter
+#net.ipv4.conf.all.rp_filter = 1
+#
+#    Avec la valeur 1, le système qui reçoit un paquet commence par vérifier que l'adresse IP source de ce paquet est joignable par l'interface sur laquelle il a été reçu.
+#    Avec la valeur 2, le système qui reçoit un paquet vérifie que l'adresse IP source de ce paquet est joignable par n'importe laquelle des entrées de sa table de routage.
 
 - name: Increase rsyslog rate limiting
   copy:
