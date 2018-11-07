@@ -1,3 +1,15 @@
 ---
 systools_enabled: False
 
+# For MegaRAID SAS:
+# apt install megacli megaclisas-status megaraid-status
+# megacli -PDlist -a0 | grep '^Device Id:'
+# /dev/sda -d sat+megaraid,0 -a -s (S/../.././01|L/../../1/03) -m root -M exec /usr/share/smartmontools/smartd-runner
+# /dev/sda -d sat+megaraid,1 -a -s (S/../.././01|L/../../1/03) -m root -M exec /usr/share/smartmontools/smartd-runner
+#
+# For Adaptec
+# apt-get install aacraid-status
+# /dev/sg1 -d scsi -a -o on -S on -s (S/../.././01|L/../../1/03) -m root -M exec /usr/share/smartmontools/smartd-runner
+
+systools_smartd_content: |
+  DEVICESCAN -a -o on -S on -s (S/../.././01|L/../../1/03) -m root -M exec /usr/share/smartmontools/smartd-runner

@@ -19,14 +19,18 @@
   copy:
     dest: /etc/rsyslog.d/imuxsock.conf
     content: "$SystemLogRateLimitBurst 1000"
+  register: imuxsock
 
 - name: restart rsyslog service
   service:
     name: rsyslog
     state: restarted
+  when: imuxsock.changed
 
 - name: Install VMWare tools if needed
   apt:
     name: open-vm-tools
     state: present
   when: ansible_virtualization_type ==  "VMware"
+
+- import_tasks: smartmontools.yml

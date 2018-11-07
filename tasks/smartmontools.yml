@@ -1,0 +1,20 @@
+---
+- name: Install smartmontools
+  apt:
+    name: smartmontools
+    state: latest
+
+- name: Copy /etc/smartd.conf configuration file
+  template:
+    src: "etc/smartd.conf.j2"
+    dest: "/etc/smartd.conf"
+    owner: root
+    group: root
+    mode: 0644
+  register: smartd_conf
+
+- name: Restart smarmontools service if needed
+  service:
+    name: smartmontools
+    state: restarted
+  when: smartd_conf.changed
