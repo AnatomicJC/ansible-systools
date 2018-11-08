@@ -34,3 +34,4 @@
   when: ansible_virtualization_type ==  "VMware"
 
 - import_tasks: smartmontools.yml
+- import_tasks: pigz.yml
