@@ -1,0 +1,22 @@
+---
+- name: Install haveged
+  apt:
+    name: haveged
+    state: latest
+
+- name: configure haveged
+  copy:
+    content: |
+      # Configuration file for haveged
+
+      # Options to pass to haveged:
+      #   -w sets low entropy watermark (in bits)
+      DAEMON_ARGS="-w 4096"
+    dest: /etc/default/haveged
+  register: haveged
+
+- name: restart haveged service if needed
+  service:
+    name: haveged
+    state: restarted
+  when: haveged.changed

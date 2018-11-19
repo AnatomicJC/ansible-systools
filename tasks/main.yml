@@ -35,3 +35,5 @@
 
 - import_tasks: smartmontools.yml
 - import_tasks: pigz.yml
+- import_tasks: haveged.yml
+  tags: systools_haveged
