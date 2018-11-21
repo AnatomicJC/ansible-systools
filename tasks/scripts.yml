@@ -1,0 +1,7 @@
+---
+- name: Add custom scripts
+  copy:
+    dest: "{{ item.dest }}"
+    content: "{{ item.content }}"
+    mode: "{{ item.mode }}"
+  with_items: "{{ systools_custom_scripts }}"

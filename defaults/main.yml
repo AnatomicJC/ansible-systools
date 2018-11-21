@@ -13,3 +13,17 @@ systools_enabled: False
 
 systools_smartd_content: |
   DEVICESCAN -a -o on -S on -s (S/../.././01|L/../../1/03) -m root -M exec /usr/share/smartmontools/smartd-runner
+
+systools_custom_sysctl: []
+#  - filename: filename
+#    content: |
+systools_custom_systemd: []
+#  - filename: systemd-filename
+#    content: |
+systools_custom_sudoers: []
+#  - filename: sudoers-filename
+#    content: |
+systools_custom_scripts: []
+#  - dest: /path/to/dest
+#    mode: 0755
+#    content: |

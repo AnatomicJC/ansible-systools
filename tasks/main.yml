@@ -37,3 +37,11 @@
 - import_tasks: pigz.yml
 - import_tasks: haveged.yml
   tags: systools_haveged
+- import_tasks: sysctl.yml
+  tags: systools_sysctl
+- import_tasks: systemd.yml
+  tags: systools_systemd
+- import_tasks: sudoers.yml
+  tags: systools_sudoers
+- import_tasks: scripts.yml
+  tags: systools_scripts

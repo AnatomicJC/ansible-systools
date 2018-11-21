@@ -1,0 +1,6 @@
+---
+- name: Add custom sudoers
+  copy:
+    dest: "/etc/sudoers.d/{{ item.filename }}"
+    content: "{{ item.content }}"
+  with_items: "{{ systools_custom_sudoers }}"

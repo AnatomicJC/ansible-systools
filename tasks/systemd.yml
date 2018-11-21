@@ -1,0 +1,14 @@
+---
+- name: Add systemd custom services
+  copy:
+    dest: "/etc/systemd/system/{{ item.filename }}.service"
+    content: "{{ item.content }}"
+  with_items: "{{ systools_custom_systemd }}"
+
+- name: Enable systemd custom services
+  systemd:
+    name: "{{ item.filename }}"
+    state: started
+    enabled: yes
+    daemon_reload: "yes"
+  with_items: "{{ systools_custom_systemd }}"
