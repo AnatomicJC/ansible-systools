@@ -1,0 +1,7 @@
+---
+systools_linux_firmwares_pkg_list:
+  - 'firmware-linux-free'
+  - 'firmware-linux-nonfree'
+  - 'iucode-tool'
+  - 'intel-microcode'
+  - 'amd64-microcode'

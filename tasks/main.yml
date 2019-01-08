@@ -15,6 +15,13 @@
 #    Avec la valeur 1, le système qui reçoit un paquet commence par vérifier que l'adresse IP source de ce paquet est joignable par l'interface sur laquelle il a été reçu.
 #    Avec la valeur 2, le système qui reçoit un paquet vérifie que l'adresse IP source de ce paquet est joignable par n'importe laquelle des entrées de sa table de routage.
 
+- name: add distribution-specific variables
+  include_vars: "{{ ansible_distribution }}.yml"
+
+- name: add Debian Wheezy workaround
+  include_vars: "{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml"
+  when: (ansible_distribution == "Debian") and (ansible_distribution_release == "wheezy")
+
 - name: Increase rsyslog rate limiting
   copy:
     dest: /etc/rsyslog.d/imuxsock.conf
@@ -35,8 +42,8 @@
 
 - name: Install linux-firmwares
   apt:
-    name: ['firmware-linux-free','firmware-linux-nonfree','firmware-misc-nonfree','iucode-tool','intel-microcode','amd64-microcode']
-  when: systools_linux_firmware and ansible_distribution == 'Debian'
+    name: "{{ systools_linux_firmwares_pkg_list }}"
+  when: systools_linux_firmware
 
 - import_tasks: smartmontools.yml
 - import_tasks: pigz.yml

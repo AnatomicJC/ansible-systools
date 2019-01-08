@@ -1,0 +1,5 @@
+---
+systools_linux_firmwares_pkg_list:
+  - 'linux-firmware'
+  - 'intel-microcode'
+  - 'amd64-microcode'
