@@ -36,7 +36,7 @@
 - name: Install linux-firmwares
   apt:
     name: ['firmware-linux-free','firmware-linux-nonfree','firmware-misc-nonfree','iucode-tool','intel-microcode','amd64-microcode']
-  when: systools_linux_firmware
+  when: systools_linux_firmware and ansible_distribution == 'Debian'
 
 - import_tasks: smartmontools.yml
 - import_tasks: pigz.yml
