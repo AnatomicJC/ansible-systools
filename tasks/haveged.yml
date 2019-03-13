@@ -11,7 +11,7 @@
 
       # Options to pass to haveged:
       #   -w sets low entropy watermark (in bits)
-      DAEMON_ARGS="-w 4096"
+      DAEMON_ARGS="-w {{ systools_haveged_write_threshold }}"
     dest: /etc/default/haveged
   register: haveged
 

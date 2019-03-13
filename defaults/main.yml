@@ -14,6 +14,7 @@ systools_enabled: False
 systools_smartd_content: |
   DEVICESCAN -a -o on -S on -s (S/../.././01|L/../../1/03) -m root -M exec /usr/share/smartmontools/smartd-runner
 
+systools_haveged_write_threshold: 4096
 systools_linux_firmware: False
 
 systools_custom_sysctl: []
