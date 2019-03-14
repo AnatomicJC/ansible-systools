@@ -1,0 +1,20 @@
+---
+- name: Be sure /etc/docker folder exists
+  file:
+    dest: "/etc/docker"
+    state: directory
+    owner: root
+    group: root
+
+- name: Set /etc/docker/daemon.json file
+  copy:
+    dest: "/etc/docker/daemon.json"
+    content: |
+      {
+        "log-driver": "json-file",
+        "log-opts": {
+          "max-size": "100m",
+          "max-file": "3",
+          "tag": "{% raw %}{{.Name}}{% endraw %}"
+        }
+      }

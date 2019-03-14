@@ -57,3 +57,5 @@
   tags: systools_sudoers
 - import_tasks: scripts.yml
   tags: systools_scripts
+- import_tasks: docker.yml
+  tags: systools_docker
