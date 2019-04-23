@@ -7,3 +7,5 @@
 
 - name: reload sysctl values
   shell: sysctl --system
+  environment:
+    PATH: "${PATH}:/sbin:/usr/sbin"
