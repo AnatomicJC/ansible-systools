@@ -8,4 +8,4 @@
 - name: reload sysctl values
   shell: sysctl --system
   environment:
-    PATH: "${PATH}:/sbin:/usr/sbin"
+    PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
