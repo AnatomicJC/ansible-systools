@@ -15,4 +15,4 @@
 
 - name: Set pigz as gzip command
   shell: "mv /bin/gzip /bin/gzip.old && ln -s /usr/bin/pigz /bin/gzip"
-  when: not gzip.stat.islnk
+  when: not gzip.stat.islnk|bool

@@ -6,7 +6,7 @@
 #    owner: "root"
 #    group: "root"
 #    mode: "0755"
-#  when: systools_enabled
+#  when: systools_enabled|bool
 
 #https://www.inetdoc.net/archives/2016/02/08/r%C3%A9glage_de_lheure_avec_ntp_sur_un_syst%C3%A8me_client_debian_gnulinux/index.html
 #$ sudo sysctl net.ipv4.conf.all.rp_filter
@@ -32,7 +32,7 @@
   service:
     name: rsyslog
     state: restarted
-  when: imuxsock.changed
+  when: imuxsock.changed|bool
 
 - name: Install VMWare tools if needed
   apt:
@@ -43,7 +43,7 @@
 - name: Install linux-firmwares
   apt:
     name: "{{ systools_linux_firmwares_pkg_list }}"
-  when: systools_linux_firmware
+  when: systools_linux_firmware|bool
 
 - import_tasks: smartmontools.yml
 - import_tasks: pigz.yml
