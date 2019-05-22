@@ -5,4 +5,4 @@ include:
     file: '/rebuild-ansible-docker-image.yml'
 
 Lint:
-  allow_failure: true
+  #allow_failure: true
