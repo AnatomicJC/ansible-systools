@@ -14,7 +14,7 @@
     name: swap.target
     state: stopped
     enabled: no
-    masked: yes
+    masked: no
   notify:
     - "systemd_reload"
   when: ansible_service_mgr == 'systemd'
