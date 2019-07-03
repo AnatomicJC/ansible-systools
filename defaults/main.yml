@@ -16,6 +16,7 @@ systools_smartd_content: |
 
 systools_haveged_write_threshold: 4096
 systools_linux_firmware: False
+systools_disable_swap: False
 
 systools_custom_sysctl: []
 #  - filename: filename

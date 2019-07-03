@@ -1,0 +1,19 @@
+---
+- name: Disable swapfile from /etc/fstab
+  replace:
+    dest: /etc/fstab
+    regexp: '^(?!#)(.*swap.*)'
+    replace: '#\1'
+
+- name: Disable swap
+  command: swapoff -a
+  when: ansible_swaptotal_mb > 0
+
+- name: Disable systemd-swap
+  systemd:
+    name: swap.target
+    enabled: no
+    masked: yes
+  notify:
+    - "systemd_reload"
+  when: ansible_service_mgr == 'systemd'

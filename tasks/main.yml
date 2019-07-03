@@ -59,3 +59,6 @@
   tags: systools_scripts
 - import_tasks: docker.yml
   tags: systools_docker
+- import_tasks: disable-swap.yml
+  tags: systools-disable-swap
+  when: systools_disable_swap|bool
