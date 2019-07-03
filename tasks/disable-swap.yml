@@ -12,6 +12,7 @@
 - name: Disable systemd-swap
   systemd:
     name: swap.target
+    state: stopped
     enabled: no
     masked: yes
   notify:
