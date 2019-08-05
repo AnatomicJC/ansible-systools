@@ -1,9 +1,10 @@
 ---
+# handler with_items
+# > https://gist.github.com/halberom/86914f86c0c33a65afe6
 - name: Add custom sysctls
   copy:
     dest: "/etc/sysctl.d/{{ item.filename }}.conf"
     content: "{{ item.content }}"
   with_items: "{{ systools_custom_sysctl }}"
-
-- name: reload sysctl values
-  shell: sysctl --system
+  notify:
+    - reload sysctl values

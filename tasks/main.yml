@@ -26,13 +26,8 @@
   copy:
     dest: /etc/rsyslog.d/imuxsock.conf
     content: "$SystemLogRateLimitBurst 1000"
-  register: imuxsock
-
-- name: restart rsyslog service
-  service:
-    name: rsyslog
-    state: restarted
-  when: imuxsock.changed|bool
+  notify:
+    - restart rsyslog
 
 - name: Install VMWare tools if needed
   apt:
@@ -46,11 +41,14 @@
   when: systools_linux_firmware|bool
 
 - import_tasks: smartmontools.yml
+- meta: flush_handlers
 - import_tasks: pigz.yml
 - import_tasks: haveged.yml
   tags: systools_haveged
+- meta: flush_handlers
 - import_tasks: sysctl.yml
   tags: systools_sysctl
+- meta: flush_handlers
 - import_tasks: systemd.yml
   tags: systools_systemd
 - import_tasks: sudoers.yml
@@ -62,3 +60,4 @@
 - import_tasks: disable-swap.yml
   tags: systools-disable-swap
   when: systools_disable_swap|bool
+- meta: flush_handlers

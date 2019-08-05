@@ -2,7 +2,7 @@
 - name: Install pigz
   apt:
     name: pigz
-    state: latest
+    state: present
 
 - name: get /bin/gzip status
   stat:

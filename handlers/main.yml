@@ -2,3 +2,21 @@
 - name: "systemd_reload"
   systemd:
     daemon_reload: yes
+
+- name: restart haveged
+  service:
+    name: haveged
+    state: restarted
+
+- name: restart rsyslog
+  service:
+    name: rsyslog
+    state: restarted
+
+- name: restart smarmontools
+  service:
+    name: smartmontools
+    state: restarted
+
+- name: reload sysctl values
+  command: sysctl --system
