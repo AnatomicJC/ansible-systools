@@ -13,7 +13,7 @@
     name: rsyslog
     state: restarted
 
-- name: restart smarmontools
+- name: restart smartmontools
   service:
     name: smartmontools
     state: restarted
